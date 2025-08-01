@@ -14,7 +14,7 @@ const portfolioItems = [
   { id: 3, title: 'Sakura E-commerce Website', image: project3, category: 'Web Development', link: 'https://github.com/ganesh26-gsg/sakura' },
   { id: 4, title: 'Antacres Real Estate Project', image: project4, category: 'Web Design', link: 'http://www.antacres.com' },
   { id: 5, title: 'Antacres Real Estate Project', image: project5, category: 'Web Design', link: 'http://www.antacres.com' },
-  { id: 6, title: 'My Portfolio Website', image: project6, category: 'Portfolio', link: '#' },
+  { id: 6, title: 'My Portfolio Website', image: project6, category: 'Portfolio', link: 'https://github.com/ganesh26-gsg/my-portfolio' },
 ];
 
 const Portfolio = () => {
