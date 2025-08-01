@@ -51,15 +51,15 @@ const Services = () => {
         {servicesData.map((service, index) => (
           <motion.div
             key={service.id}
-            className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700 hover:border-purple-500 transform hover:scale-105 transition duration-300 cursor-pointer"
+            className="bg-white p-6 rounded-lg shadow-md border border-gray-300 hover:border-purple-500 transform hover:scale-105 transition duration-300 cursor-pointer dark:bg-gray-800 dark:border-gray-700 dark:hover:border-purple-500"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ amount: 0.3 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
           >
-            <p className="text-gray-400 text-3xl font-bold mb-4">{service.id}</p>
-            <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-            <p className="text-gray-300 mb-6">{service.description}</p>
+            <p className="text-gray-500 text-3xl font-bold mb-4 dark:text-gray-400">{service.id}</p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4 dark:text-white">{service.title}</h3>
+            <p className="text-gray-600 mb-6 dark:text-gray-300">{service.description}</p>
           </motion.div>
         ))}
       </div>

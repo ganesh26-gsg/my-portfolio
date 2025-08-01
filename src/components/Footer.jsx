@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 py-10 mt-16 border-t border-gray-800">
+    <footer className="bg-gray-100 py-10 mt-16 border-t border-gray-200 dark:bg-gray-900 dark:border-gray-800">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
         <motion.div
           className="mb-6 md:mb-0"
@@ -14,11 +14,11 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-2xl font-bold text-white tracking-wide">
+          <p className="text-2xl font-bold text-gray-900 tracking-wide dark:text-white">
             <span className="text-purple-500">Gani</span>
-            <span className="text-gray-400 text-sm align-super ml-0.5">.Dev</span>
+            <span className="text-gray-500 dark:text-gray-400 text-sm align-super ml-0.5">.Dev</span>
           </p>
-          <p className="text-gray-400 mt-2 max-w-sm">
+          <p className="text-gray-600 mt-2 max-w-sm dark:text-gray-400">
             Passionate Frontend Developer from Vizag, Andhra Pradesh, eager to build impactful web experiences and grow with dynamic teams.
           </p>
           <p className="text-gray-500 text-sm mt-4">
@@ -32,7 +32,7 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="flex space-x-6 text-gray-400 text-3xl">
+          <div className="flex space-x-6 text-gray-600 dark:text-gray-400 text-3xl">
             <motion.a
               href="https://www.linkedin.com/in/gangupam-saiganesh-354a3b247?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
               target="_blank"
@@ -65,7 +65,7 @@ const Footer = () => {
               <FaEnvelope />
             </motion.a>
           </div>
-          <div className="flex space-x-6 text-gray-400 text-sm">
+          <div className="flex space-x-6 text-gray-600 dark:text-gray-400 text-sm">
             <a href="#" className="hover:text-purple-500 transition duration-300">Term of Services</a>
             <a href="#" className="hover:text-purple-500 transition duration-300">Privacy Policy</a>
             <a href="#contact" className="hover:text-purple-500 transition duration-300">Connect with me</a>

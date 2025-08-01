@@ -52,7 +52,7 @@ const Portfolio = () => {
               <a
                 href={item.link}
                 className="px-4 py-2 bg-purple-600 text-white rounded-full text-sm font-semibold hover:bg-purple-700 transition duration-300"
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 View Project

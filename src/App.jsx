@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -7,6 +7,7 @@ import Portfolio from './components/Portifolio';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { motion, useScroll, useSpring } from 'framer-motion';
+import useThemeStore from './store/useThemeStore.js';
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -16,16 +17,21 @@ function App() {
     restDelta: 0.001
   });
 
+  const { theme } = useThemeStore();
+
+  useEffect(() => {
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(theme);
+  }, [theme]);
+
   return (
     <>
-      {/* Progress bar is now outside the main app container for stability */}
-      <motion.div 
-        className="progress-bar fixed top-0 left-0 right-0 h-1 bg-purple-500 z-50" 
-        style={{ scaleX }} 
+      <motion.div
+        className="progress-bar fixed top-0 left-0 right-0 h-1 bg-purple-500 z-50"
+        style={{ scaleX }}
       />
 
-      {/* Main app container with overflow-x-hidden to prevent horizontal scrolling */}
-      <div className="bg-gray-900 text-white min-h-screen font-sans overflow-x-hidden">
+      <div className="bg-gray-100 text-gray-900 min-h-screen font-sans overflow-x-hidden dark:bg-gray-900 dark:text-white">
         <Navbar />
         <main>
           <section id="home" className="py-20 md:py-32">

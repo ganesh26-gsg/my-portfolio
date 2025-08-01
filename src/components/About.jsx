@@ -37,7 +37,7 @@ const About = () => {
           <img
             src={profileImage}
             alt="Sai Ganesh - Frontend Developer"
-            className="w-64 h-64 rounded-xl object-cover shadow-lg border-4 border-gray-700"
+            className="w-64 h-64 rounded-xl object-cover shadow-lg border-4 border-gray-300 dark:border-gray-700"
           />
         </motion.div>
 
@@ -47,7 +47,7 @@ const About = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed dark:text-gray-300">
             As a passionate Frontend Developer based in Vizag, Andhra Pradesh, I'm dedicated to crafting engaging and responsive user interfaces. I bring a strong focus on UI/UX Design and expertise in building modern web applications using cutting-edge tools.
             <br/><br/>
             My core skills include React.js, Tailwind CSS, JavaScript, and HTML/CSS. I also work with Turso (SQLite3) for data management, Zustand for state management, Axios for API calls, Firebase for backend services, and Radix UI for accessible components. I am eager to learn, grow, and contribute my fresh perspective to dynamic development teams.
@@ -57,10 +57,10 @@ const About = () => {
             {skillBars.map((skill) => (
               <div key={skill.name}>
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-lg font-medium text-gray-200">{skill.name}</span>
-                  <span className="text-lg font-medium text-gray-200">{skill.level}%</span>
+                  <span className="text-lg font-medium text-gray-800 dark:text-gray-200">{skill.name}</span>
+                  <span className="text-lg font-medium text-gray-800 dark:text-gray-200">{skill.level}%</span>
                 </div>
-                <div className="w-full bg-gray-700 rounded-full h-3">
+                <div className="w-full bg-gray-300 rounded-full h-3 dark:bg-gray-700">
                   <motion.div
                     className={`${skill.color} h-3 rounded-full`}
                     style={{ width: `${skill.level}%` }}
@@ -75,31 +75,31 @@ const About = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             <motion.div
-              className="bg-gray-800 p-6 rounded-lg shadow-md text-center"
+              className="bg-gray-200 p-6 rounded-lg shadow-md text-center dark:bg-gray-800"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
               <h3 className="text-4xl font-bold text-purple-500 mb-2">Fresh</h3>
-              <p className="text-gray-300 text-lg">Perspective & Drive</p>
+              <p className="text-gray-600 text-lg dark:text-gray-300">Perspective & Drive</p>
             </motion.div>
             <motion.div
-              className="bg-gray-800 p-6 rounded-lg shadow-md text-center"
+              className="bg-gray-200 p-6 rounded-lg shadow-md text-center dark:bg-gray-800"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.9 }}
             >
               <h3 className="text-4xl font-bold text-pink-500 mb-2">5+</h3>
-              <p className="text-gray-300 text-lg">Personal Projects</p>
+              <p className="text-gray-600 text-lg dark:text-gray-300">Personal Projects</p>
             </motion.div>
             <motion.div
-              className="bg-gray-800 p-6 rounded-lg shadow-md text-center"
+              className="bg-gray-200 p-6 rounded-lg shadow-md text-center dark:bg-gray-800"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.0 }}
             >
               <h3 className="text-4xl font-bold text-orange-500 mb-2">Ready</h3>
-              <p className="text-gray-300 text-lg">To Contribute</p>
+              <p className="text-gray-600 text-lg dark:text-gray-300">To Contribute</p>
             </motion.div>
           </div>
         </motion.div>
