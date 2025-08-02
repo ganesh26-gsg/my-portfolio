@@ -1,18 +1,17 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import ReCAPTCHA from 'react-google-recaptcha';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    user_name: '',
+    user_email: '',
     message: '',
   });
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('idle');
   const [errorMessage, setErrorMessage] = useState('');
-  const [recaptchaToken, setRecaptchaToken] = useState(null);
 
-  const recaptchaRef = useRef(null);
+  const form = useRef();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,53 +21,26 @@ const Contact = () => {
     }));
   };
 
-  const handleRecaptchaChange = (token) => {
-    setRecaptchaToken(token);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('submitting');
     setErrorMessage('');
 
-    if (!recaptchaToken) {
-      setStatus('error');
-      setErrorMessage('Please complete the reCAPTCHA.');
-      return;
-    }
-
     try {
-      const response = await fetch('http://localhost:4000/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...formData, recaptchaToken }),
+      await emailjs.sendForm('service_ljo0hql', 'template_fg5rwpq', form.current, {
+        publicKey: 'nJp8hTB6FT7bXecEe',
       });
 
-      const data = await response.json();
+      setStatus('success');
+      setFormData({ user_name: '', user_email: '', message: '' });
+      setTimeout(() => {
+        setStatus('idle');
+      }, 2000);
 
-      if (response.ok) {
-        setStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-        setRecaptchaToken(null);
-
-        if (recaptchaRef.current) {
-          recaptchaRef.current.reset();
-        }
-
-        setTimeout(() => {
-          setStatus('idle');
-        }, 2000);
-
-      } else {
-        setStatus('error');
-        setErrorMessage(data.error || 'Something went wrong.');
-      }
     } catch (error) {
-      console.error('Network error:', error);
+      console.error('EmailJS error:', error);
       setStatus('error');
-      setErrorMessage('Failed to connect to the server. Please ensure the backend server is running on http://localhost:4000');
+      setErrorMessage('Failed to send the message. Please try again later.');
     }
   };
 
@@ -119,15 +91,15 @@ const Contact = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form ref={form} onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="name" className="sr-only">Your Name</label>
               <input
                 type="text"
                 id="name"
-                name="name"
+                name="user_name"
                 placeholder="Enter your name"
-                value={formData.name}
+                value={formData.user_name}
                 onChange={handleChange}
                 className="w-full px-5 py-3 bg-gray-200 text-gray-900 rounded-md border border-gray-300 focus:outline-none focus:border-purple-500 placeholder-gray-500 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:border-purple-500 dark:placeholder-gray-400"
                 required
@@ -138,9 +110,9 @@ const Contact = () => {
               <input
                 type="email"
                 id="email"
-                name="email"
+                name="user_email"
                 placeholder="Enter your email"
-                value={formData.email}
+                value={formData.user_email}
                 onChange={handleChange}
                 className="w-full px-5 py-3 bg-gray-200 text-gray-900 rounded-md border border-gray-300 focus:outline-none focus:border-purple-500 placeholder-gray-500 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:border-purple-500 dark:placeholder-gray-400"
                 required
@@ -160,21 +132,12 @@ const Contact = () => {
               ></textarea>
             </div>
 
-            <div className="flex justify-center md:justify-start">
-              <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey="6LdVt5QrAAAAAJne8sMThUkyOMgAHaow8J7_TdEN"
-                onChange={handleRecaptchaChange}
-                onExpired={() => setRecaptchaToken(null)}
-              />
-            </div>
-
             <motion.button
               type="submit"
               className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-md font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              disabled={status === 'submitting' || !recaptchaToken}
+              disabled={status === 'submitting'}
             >
               {status === 'submitting' ? 'Submitting...' : 'Submit now'}
             </motion.button>
